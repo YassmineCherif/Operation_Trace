@@ -1,0 +1,26 @@
+<nav class="navbar">
+    <div class="navbar-section left">
+        <ul class="navbar-links left-links">
+            <li><a routerLink="/operation/all" routerLinkActive="active" (click)="setSelectedLink('Operations')">Operations</a></li>
+            <li><a routerLink="/numserie/all" routerLinkActive="active" (click)="setSelectedLink('Serial numbers')">Serial numbers</a></li>
+            <li><a routerLink="/trace/all" routerLinkActive="active" (click)="setSelectedLink('Traces')">Traces</a></li>
+        </ul>
+    </div>
+    <div class="navbar-logo">
+        <a routerLink="/home" (click)="setSelectedLink('Home')">
+            <img src="assets/logo.png" alt="Sagemcom Logo" />
+        </a>
+    </div>
+    <div class="navbar-section right">
+        <ul class="navbar-links right-links">
+            <li><a routerLink="/" routerLinkActive="active" (click)="setSelectedLink('News')">News</a></li>
+            <li><a routerLink="/" routerLinkActive="active" (click)="setSelectedLink('Support')">Support</a></li>
+            <li><a routerLink="" routerLinkActive="active" (click)="setSelectedLink('About')">About</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Nouveau menu sous le menu principal -->
+<div class="sub-menu" *ngIf="selectedLink">
+    <span>{{ selectedLink }}</span>
+</div>

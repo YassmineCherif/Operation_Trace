@@ -1,0 +1,71 @@
+<div *ngIf="operation">
+  <h2>Edit Operation</h2>
+  <form (ngSubmit)="updateOperation()" #operationForm="ngForm">
+    <div>
+      <label for="numeroserie">Serial Number:</label>
+      <select 
+        id="numeroserie" 
+        [(ngModel)]="operation.numeroserie" 
+        name="numeroserie" 
+        required
+        #numeroserie="ngModel"
+      >
+        <option value="" disabled>Select a serial number</option>
+        <option *ngFor="let serie of numSeries" [value]="serie">{{ serie }}</option>
+      </select>
+      <div *ngIf="numeroserie.invalid && (numeroserie.dirty || numeroserie.touched)" class="error-message">
+        <small *ngIf="numeroserie.errors?.['required']">Serial number is required.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="description">Description:</label>
+      <input 
+        id="description" 
+        class="description-input" 
+        [(ngModel)]="operation.description" 
+        name="description" 
+        required
+        #description="ngModel"
+      >
+      <div *ngIf="description.invalid && (description.dirty || description.touched)" class="error-message">
+        <small *ngIf="description.errors?.['required']">Description is required.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="code">Code:</label>
+      <textarea 
+        id="code" 
+        [(ngModel)]="operation.code" 
+        name="code" 
+        rows="8" 
+        cols="40" 
+        required
+        #code="ngModel"
+      ></textarea>
+      <div *ngIf="code.invalid && (code.dirty || code.touched)" class="error-message">
+        <small *ngIf="code.errors?.['required']">Code is required.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="creerpar">Created by:</label>
+      <select 
+        id="creerpar" 
+        [(ngModel)]="operation.creerpar" 
+        name="creerpar" 
+        required
+        #creerpar="ngModel"
+      >
+        <option value="" disabled>Select a user</option>
+        <option *ngFor="let user of users" [value]="user">{{ user }}</option>
+      </select>
+      <div *ngIf="creerpar.invalid && (creerpar.dirty || creerpar.touched)" class="error-message">
+        <small *ngIf="creerpar.errors?.['required']">Created by is required.</small>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="operationForm.invalid">Update</button>
+  </form>
+</div>
