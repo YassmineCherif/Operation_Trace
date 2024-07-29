@@ -12,4 +12,9 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     @Query("SELECT u.login FROM User u")
     List<String> findAllUserLogins();
+
+    User findByLogin(String login);
+
+    User findByEmail(String email);
+
 }
