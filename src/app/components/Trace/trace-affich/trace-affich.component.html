@@ -1,48 +1,67 @@
 <div>
-    <div class="nav-container">
-      <button class="right-button" [routerLink]="['/trace/create']">Create Trace</button>
-    </div>
-    <div class="search-container">
-      <input type="text" placeholder="Search by Serial Number, Operation, or Created By" [(ngModel)]="searchTerm" (input)="filterTraces()" />
-    </div>
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-             <th>Serial Number</th>
-             <th>Operation</th>
-             <th>Date Creation</th>
-           
-            <th>Date Start</th>
-            <th>Date End</th>
-            <th>Created By</th>
-            
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let trace of filteredTraces">
-            <td>{{ trace.idtrace }}</td>
-            <td>{{ trace.numserie }}</td>
-            <td>{{ trace.operation }}</td>
-            <td>
-              <ng-container *ngIf="trace.datecreation">
-                <div>{{ trace.datecreation | date:'yyyy-MM-dd' }}</div>
-                <div>{{ trace.datecreation | date:'HH:mm:ss' }}</div>
-              </ng-container>
-            </td>
-            <td>{{ trace.datedebut | date }}</td>
-            <td>{{ trace.datefin | date }}</td>
-            <td>{{ trace.creerpar }}</td>
-           
-            <td>
-                <button [routerLink]="['/', trace.idtrace]">Edit</button>
-              <button (click)="deleteTrace(trace.idtrace)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <!-- Create Trace Button -->
+  <div class="nav-container">
+    <button 
+      class="right-button" 
+      *ngIf="canCreateTrace()"
+      [routerLink]="['/trace/create']">
+      Create Trace
+    </button>
   </div>
   
+  <!-- Search Input -->
+  <div class="search-container">
+    <input 
+      type="text" 
+      placeholder="Search by Serial Number, Operation, or Created By" 
+      [(ngModel)]="searchTerm" 
+      (input)="filterTraces()" 
+    />
+  </div>
+  
+  <!-- Table Container -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Serial Number</th>
+          <th>Operation</th>
+          <th>Date Creation</th>
+          <th>Date Start</th>
+          <th>Date End</th>
+          <th>Created By</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trace of filteredTraces">
+          <td>{{ trace.idtrace }}</td>
+          <td>{{ trace.numserie }}</td>
+          <td>{{ trace.operation }}</td>
+          <td>
+            <ng-container *ngIf="trace.datecreation">
+              <div>{{ trace.datecreation | date:'yyyy-MM-dd' }}</div>
+              <div>{{ trace.datecreation | date:'HH:mm:ss' }}</div>
+            </ng-container>
+          </td>
+          <td>{{ trace.datedebut | date }}</td>
+          <td>{{ trace.datefin | date }}</td>
+          <td>{{ trace.creerpar }}</td>
+          <td>
+            <button 
+              *ngIf="canEditTrace()" 
+              [routerLink]="['/trace/edit', trace.idtrace]">
+              Edit
+            </button>
+            <button 
+              *ngIf="canDeleteTrace()"
+              (click)="deleteTrace(trace.idtrace)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

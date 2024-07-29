@@ -1,5 +1,5 @@
 <div>
-  <h2>Create Serial number</h2>
+  <h2>Create Serial Number</h2>
   <form (ngSubmit)="createNumSerie()" #numSerieForm="ngForm">
     <div>
       <label for="numeroserie">Serial Number:</label>
@@ -13,23 +13,6 @@
       >
       <div *ngIf="numeroserie.invalid && (numeroserie.dirty || numeroserie.touched)" class="error-message">
         <small *ngIf="numeroserie.errors?.['required']">Serial number is required.</small>
-      </div>
-    </div>
-
-    <div>
-      <label for="creerpar">Created by:</label>
-      <select 
-        id="creerpar" 
-        [(ngModel)]="numSerie.creerpar" 
-        name="creerpar" 
-        required
-        #creerpar="ngModel"
-      >
-        <option value="" disabled>Select a user</option>
-        <option *ngFor="let user of users" [value]="user">{{ user }}</option>
-      </select>
-      <div *ngIf="creerpar.invalid && (creerpar.dirty || creerpar.touched)" class="error-message">
-        <small *ngIf="creerpar.errors?.['required']">Created by is required.</small>
       </div>
     </div>
 

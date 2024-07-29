@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NumSerieService } from '../../services/numserie.service';
+import { AuthService } from '../../services/auth-service.service'; // Import AuthService
 import { NumSerie } from '../../models/numSerie';
 
 @Component({
@@ -13,17 +14,19 @@ export class NumSerieCreateComponent implements OnInit {
     numeroserie: '',
     creerpar: ''
   };
-  users: string[] = [];
   errorMessage: string | null = null;
 
   constructor(
     private numSerieService: NumSerieService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService // Inject AuthService
   ) { }
 
   ngOnInit(): void {
-    this.numSerieService.getUsers().subscribe(data => {
-      this.users = data;
+    // Get the logged-in user's login and set creerpar
+    this.authService.userLogin$.subscribe(login => {
+      // Handle the case where login might be null
+      this.numSerie.creerpar = login || ''; // Default to an empty string if login is null
     });
   }
 
@@ -33,7 +36,7 @@ export class NumSerieCreateComponent implements OnInit {
         this.router.navigate(['/numserie/all']);
       },
       error: (err) => {
-        this.errorMessage = err.message || 'the serial number already exists.';
+        this.errorMessage = err.message || 'The serial number already exists.';
       }
     });
   }

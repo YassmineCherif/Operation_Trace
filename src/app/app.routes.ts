@@ -7,6 +7,7 @@ import { NumSerieAffichComponent } from './components/numserie-affich/numserie-a
 import { NumserieEditComponent } from './components/numserie-edit/numserie-edit.component';
 import { HomeComponent } from './components/home/home.component';
 import { TraceAffichComponent } from './components/Trace/trace-affich/trace-affich.component';
+import { LoginComponent } from './components/User/login/login.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,5 +19,6 @@ export const routes: Routes = [
   { path: 'numserie/create', component: NumSerieCreateComponent },
   {path : 'trace/all' , component:TraceAffichComponent},
   {path : 'home', component: HomeComponent},
+  { path: 'login', component: LoginComponent},
   { path: '**', redirectTo: 'home' }
 ];

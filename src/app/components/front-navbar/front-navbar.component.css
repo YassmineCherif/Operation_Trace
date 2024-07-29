@@ -118,3 +118,15 @@
 .home-image {
     cursor: pointer; /* Change le curseur pour indiquer que l'image est cliquable */
 }
+
+
+.navbar-links a.disabled {
+    color: gray;
+    pointer-events: none; /* Prevent clicks */
+    cursor: not-allowed;
+  }
+  
+  .navbar-links a.disabled:hover {
+    text-decoration: none; /* Remove hover effect for disabled links */
+  }
+  

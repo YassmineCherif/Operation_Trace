@@ -49,23 +49,9 @@
       </div>
     </div>
 
-    <div>
-      <label for="creerpar">Created by:</label>
-      <select 
-        id="creerpar" 
-        [(ngModel)]="operation.creerpar" 
-        name="creerpar" 
-        required
-        #creerpar="ngModel"
-      >
-        <option value="" disabled>Select a user</option>
-        <option *ngFor="let user of users" [value]="user">{{ user }}</option>
-      </select>
-      <div *ngIf="creerpar.invalid && (creerpar.dirty || creerpar.touched)" class="error-message">
-        <small *ngIf="creerpar.errors?.['required']">Created by is required.</small>
-      </div>
-    </div>
-
     <button type="submit" [disabled]="operationForm.invalid">Update</button>
   </form>
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
 </div>

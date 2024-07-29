@@ -52,7 +52,7 @@ div {
     color: white; /* Couleur du texte */
     border: none; /* Supprimer la bordure */
     border-radius: 4px; /* Coins arrondis */
-    font-size: 18px; /* Augmenter la taille de la police */
+    font-size: 16px; /* Augmenter la taille de la police */
     cursor: pointer; /* Changer le curseur en pointeur au survol */
     display: inline-block; /* Assurer que le bouton est inline-block */
     margin: 0; /* Supprimer les marges par défaut */
@@ -100,11 +100,10 @@ div {
     word-wrap: break-word; /* Casser les mots longs sur la ligne suivante */
   }
   
-  /* Style des boutons à l'intérieur des cellules du tableau */
-  td button {
-    margin-right: 10px; /* Espace entre les boutons */
-    font-size: 18px; /* Augmenter la taille de la police */
-  }
+
+td button {
+  margin-right: 10px; /* Espace entre les boutons */
+}
   
   .right-button {
     background-color: #e6e5e5; /* Couleur de fond du bouton */

@@ -1,0 +1,36 @@
+<div class="login-container">
+    <h2>Log in or create an account</h2>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <div>
+            <label for="loginEmail">Login:</label>
+            <input
+                type="text"
+                id="loginEmail"
+                name="loginEmail"
+                [(ngModel)]="loginEmail"
+                required
+            />
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                [(ngModel)]="password"
+                required
+            />
+            <a href="/forgot-password" class="forgot-password-link">
+              <strong> Forgotten your password?</strong>
+            </a>
+        </div>
+
+        <button type="submit">Login</button>
+        <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+        <div class="additional-links">
+            <a href="/register" class="register-link">
+                Don’t have an account? <strong>Register</strong>
+            </a>
+        </div>
+    </form>
+</div>

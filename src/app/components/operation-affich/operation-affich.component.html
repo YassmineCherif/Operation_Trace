@@ -1,43 +1,42 @@
 <div>
-    <div class="nav-container">
-      <button class="right-button" [routerLink]="['/operation/create']">Create Operation</button>
-    </div>
-    <div class="search-container">
-      <input type="text" placeholder="Search by Serial Number, Description, or Created By" [(ngModel)]="searchTerm" (input)="filterOperations()" />
-    </div>
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Numero Serie</th>
-            <th>Description</th>
-            <th>Code</th>
-            <th>Date Creation</th>
-            <th>Creer Par</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let operation of filteredOperations">
-            <td>{{ operation.idoperation }}</td>
-            <td>{{ operation.numeroserie }}</td>
-            <td>{{ operation.description }}</td>
-            <td class="multi-line">{{ operation.code }}</td>
-            <td>
-              <ng-container *ngIf="operation.datecreation">
-                <div>{{ operation.datecreation | date:'yyyy-MM-dd' }}</div>
-                <div>{{ operation.datecreation | date:'HH:mm:ss' }}</div>
-              </ng-container>
-            </td>
-            <td>{{ operation.creerpar }}</td>
-            <td>
-              <button [routerLink]="['/operation/edit', operation.idoperation]">Edit</button>
-              <button (click)="deleteOperation(operation.idoperation)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="nav-container">
+    <button class="right-button" [routerLink]="['/operation/create']">Create Operation</button>
   </div>
-  
+  <div class="search-container">
+    <input type="text" placeholder="Search by Serial Number, Description, or Created By" [(ngModel)]="searchTerm" (input)="filterOperations()" />
+  </div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Numero Serie</th>
+          <th>Description</th>
+          <th>Code</th>
+          <th>Date Creation</th>
+          <th>Creer Par</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let operation of filteredOperations">
+          <td>{{ operation.idoperation }}</td>
+          <td>{{ operation.numeroserie }}</td>
+          <td>{{ operation.description }}</td>
+          <td class="multi-line">{{ operation.code }}</td>
+          <td>
+            <ng-container *ngIf="operation.datecreation">
+              <div>{{ operation.datecreation | date:'yyyy-MM-dd' }}</div>
+              <div>{{ operation.datecreation | date:'HH:mm:ss' }}</div>
+            </ng-container>
+          </td>
+          <td>{{ operation.creerpar }}</td>
+          <td>
+            <button [routerLink]="['/operation/edit', operation.idoperation]">Edit</button>
+            <button (click)="deleteOperation(operation.idoperation)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

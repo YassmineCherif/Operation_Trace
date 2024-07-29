@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NumSerieService } from '../../services/numserie.service';
+import { AuthService } from '../../services/auth-service.service'; // Import AuthService
 import { NumSerie } from '../../models/numSerie';
 
 @Component({
@@ -21,7 +22,8 @@ export class NumserieEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private numSerieService: NumSerieService
+    private numSerieService: NumSerieService,
+    private authService: AuthService // Inject AuthService
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +33,11 @@ export class NumserieEditComponent implements OnInit {
         this.numSerieService.getNumSerieById(id).subscribe({
           next: (data: NumSerie) => {
             this.numSerie = data;
+
+            // Set 'creerpar' to the logged-in user's login
+            this.authService.userLogin$.subscribe(login => {
+              this.numSerie.creerpar = login || ''; // Default to an empty string if login is null
+            });
           },
           error: (err) => this.errorMessage = err.message || 'An error occurred while fetching the serial number.'
         });
