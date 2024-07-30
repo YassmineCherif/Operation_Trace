@@ -31,11 +31,6 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Operation> operations;
 
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-    private Set<Trace> traces;
-
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
     private Set<NumSerie> numseries;
 }

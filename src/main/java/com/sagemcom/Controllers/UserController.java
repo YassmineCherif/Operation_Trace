@@ -37,9 +37,7 @@ public class UserController {
 
         if (password.equals(user.getMdp())) {
             response.put("message", "Login successful");
-
-            // Assuming `getRole()` returns an enum or custom class, convert it to String
-            response.put("role", user.getRole().toString()); // Convert role to String
+            response.put("role", user.getRole().toString());
 
             return ResponseEntity.ok(response);
         } else {

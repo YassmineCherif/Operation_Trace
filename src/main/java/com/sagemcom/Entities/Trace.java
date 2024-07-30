@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 
 @Entity
@@ -23,10 +24,16 @@ public class Trace implements Serializable {
     String creerpar;
     Date datedebut;
     Date datefin;
+    String tracee ;
     String numserie;
-    String operation;
+    String operationn;
 
+
+    @ManyToMany
+    private Set<NumSerie> numseries;
+
+    // Association with Operation
     @ManyToOne
-    User user ;
+    Operation operation;
 
 }

@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 
 @Entity
@@ -25,11 +26,9 @@ public class Operation implements Serializable {
     String creerpar;
 
     @ManyToOne
-    User user ;
+    User user;
 
-    // foreign key
-        String numeroserie;
-
-
+    @OneToMany(mappedBy = "operation")
+    private Set<Trace> traces;
 
 }

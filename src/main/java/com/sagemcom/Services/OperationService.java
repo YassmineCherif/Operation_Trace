@@ -27,65 +27,29 @@ public class OperationService {
 
 
     public List<Operation> getAllOperations() {
+
         return operationRepository.findAll();
     }
+
 
     public Operation getOperationById(long id) {
         return operationRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Operation with id " + id + " not found."));
     }
 
+
+
     public Operation createOperation(Operation operation) {
-        try {
-            // Log the incoming operation
-            logger.debug("Incoming operation: {}", operation);
-
-            // Check if the numeroserie exists
-            NumSerie existingNumSerie = numSerieRepository.findByNumeroserie(operation.getNumeroserie());
-            logger.debug("NumSerie found: {}", existingNumSerie);
-
-            if (existingNumSerie != null) {
-                // NumSerie exists, retrieve all operations for this serial number
-                List<Operation> existingOperations = operationRepository.findByNumeroserie(existingNumSerie.getNumeroserie());
-                logger.debug("Existing operations found: {}", existingOperations);
-
-                // Check for an operation with the same description
-                for (Operation existingOperation : existingOperations) {
-                    if (existingOperation.getDescription().equals(operation.getDescription())) {
-                        // If the operation is the same, overwrite the content
-                        existingOperation.setCode(operation.getCode());
-                        existingOperation.setCreerpar(operation.getCreerpar());
-                        existingOperation.setDatecreation(new Date());
-
-                        logger.info("Updating existing operation: {}", existingOperation);
-                        return operationRepository.save(existingOperation);
-                    }
-                }
-
-                // If no operation with the same description is found, create a new operation
-                operation.setDatecreation(new Date());
-                logger.info("Creating new operation for existing NumSerie: {}", operation);
-                return operationRepository.save(operation);
-            } else {
-                // NumSerie does not exist, create a new NumSerie
-                NumSerie newNumSerie = new NumSerie();
-                newNumSerie.setNumeroserie(operation.getNumeroserie());
-                newNumSerie.setCreerpar(operation.getCreerpar());
-                newNumSerie.setDatecreation(new Date());
-
-                logger.info("Creating new NumSerie: {}", newNumSerie);
-                numSerieRepository.save(newNumSerie);
-
-                // Create a new Operation
-                operation.setDatecreation(new Date());
-                logger.info("Creating new operation: {}", operation);
-                return operationRepository.save(operation);
-            }
-        } catch (Exception e) {
-            logger.error("Error creating operation: {}", e.getMessage(), e);
-            throw new RuntimeException("Error creating operation", e);
+        // Check if an operation with the same code already exists
+        List<Operation> existingOperations = operationRepository.findByCode(operation.getCode());
+        if (!existingOperations.isEmpty()) {
+            throw new RuntimeException("Operation already exists");
         }
+        // Set the creation date to the current date
+        operation.setDatecreation(new Date());
+        return operationRepository.save(operation);
     }
+
 
 
 
