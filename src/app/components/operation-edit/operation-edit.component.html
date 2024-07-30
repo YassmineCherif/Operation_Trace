@@ -1,22 +1,7 @@
 <div *ngIf="operation">
   <h2>Edit Operation</h2>
   <form (ngSubmit)="updateOperation()" #operationForm="ngForm">
-    <div>
-      <label for="numeroserie">Serial Number:</label>
-      <select 
-        id="numeroserie" 
-        [(ngModel)]="operation.numeroserie" 
-        name="numeroserie" 
-        required
-        #numeroserie="ngModel"
-      >
-        <option value="" disabled>Select a serial number</option>
-        <option *ngFor="let serie of numSeries" [value]="serie">{{ serie }}</option>
-      </select>
-      <div *ngIf="numeroserie.invalid && (numeroserie.dirty || numeroserie.touched)" class="error-message">
-        <small *ngIf="numeroserie.errors?.['required']">Serial number is required.</small>
-      </div>
-    </div>
+
 
     <div>
       <label for="description">Description:</label>

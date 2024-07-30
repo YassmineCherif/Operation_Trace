@@ -3,14 +3,13 @@
     <button class="right-button" [routerLink]="['/operation/create']">Create Operation</button>
   </div>
   <div class="search-container">
-    <input type="text" placeholder="Search by Serial Number, Description, or Created By" [(ngModel)]="searchTerm" (input)="filterOperations()" />
+    <input type="text" placeholder="Search by Description, or Creator" [(ngModel)]="searchTerm" (input)="filterOperations()" />
   </div>
   <div class="table-container">
     <table>
       <thead>
         <tr>
           <th>ID</th>
-          <th>Numero Serie</th>
           <th>Description</th>
           <th>Code</th>
           <th>Date Creation</th>
@@ -21,7 +20,6 @@
       <tbody>
         <tr *ngFor="let operation of filteredOperations">
           <td>{{ operation.idoperation }}</td>
-          <td>{{ operation.numeroserie }}</td>
           <td>{{ operation.description }}</td>
           <td class="multi-line">{{ operation.code }}</td>
           <td>

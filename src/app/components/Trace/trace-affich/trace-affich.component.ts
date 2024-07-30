@@ -56,12 +56,12 @@ export class TraceAffichComponent implements OnInit {
 
   // Function to determine if the 'Create trace' button should be enabled
   canCreateTrace(): boolean {
-    return this.userRole === 'Admin' || this.userRole === 'Visiteur';
+    return this.userRole === 'Admin' || this.userRole === 'Testeur';
   }
 
   // Function to determine if the 'Edit' button should be enabled
   canEditTrace(): boolean {
-    return this.userRole === 'Admin' || this.userRole === 'Visiteur';
+    return this.userRole === 'Admin' || this.userRole === 'Testeur';
   }
 
   // Function to determine if the 'Delete' button should be enabled

@@ -1,38 +1,46 @@
 <nav class="navbar">
-    <div class="navbar-section left">
-      <ul class="navbar-links left-links">
-        <li *ngIf="userRole === 'Admin'">
-          <a routerLink="/operation/all" routerLinkActive="active" (click)="setSelectedLink('Operations')">Operations</a>
-        </li>
-        <li *ngIf="userRole === 'Admin'">
-          <a routerLink="/numserie/all" routerLinkActive="active" (click)="setSelectedLink('Serial numbers')">Serial numbers</a>
-        </li>
-        <li>
-          <a routerLink="/trace/all" routerLinkActive="active" (click)="setSelectedLink('Traces')">Traces</a>
-        </li>
-      </ul>
-    </div>
-    <div class="navbar-logo">
-      <a routerLink="/home" (click)="setSelectedLink('Home')">
-        <img src="assets/logo.png" alt="Sagemcom Logo" />
-      </a>
-    </div>
-    <div class="navbar-section right">
-      <ul class="navbar-links right-links">
-        <li *ngIf="!userLogin"><a routerLink="/home" routerLinkActive="active" (click)="setSelectedLink('Home')">Home</a></li>
-        <li *ngIf="!userLogin"><a routerLink="/login" routerLinkActive="active" (click)="setSelectedLink('Log in')">Log in</a></li>
-        <li *ngIf="userLogin">
-          <a>{{ userLogin }}</a>
-        </li>
-        <li *ngIf="userLogin">
-          <a (click)="logout()">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  
-  <!-- Nouveau menu sous le menu principal -->
-  <div class="sub-menu" *ngIf="selectedLink">
-    <span>{{ selectedLink }}</span>
+  <div class="navbar-section left">
+    <ul class="navbar-links left-links">
+      <!-- Display Operations link for Admin role only -->
+      <li *ngIf="userRole === 'Admin'">
+        <a routerLink="/operation/all" routerLinkActive="active" (click)="setSelectedLink('Operations')">Operations</a>
+      </li>
+      <!-- Display Serial Numbers link for Admin role only -->
+      <li *ngIf="userRole === 'Admin'">
+        <a routerLink="/numserie/all" routerLinkActive="active" (click)="setSelectedLink('Serial numbers')">Serial numbers</a>
+      </li>
+      <!-- Display Traces link only if userLogin is present and userRole is not 'Default' -->
+      <li *ngIf="userLogin && userRole !== 'Default'">
+        <a routerLink="/trace/all" routerLinkActive="active" (click)="setSelectedLink('Traces')">Traces</a>
+      </li>
+    </ul>
   </div>
-  
+  <div class="navbar-logo">
+    <a routerLink="/home" (click)="setSelectedLink('Home')">
+      <img src="assets/logo.png" alt="Sagemcom Logo" />
+    </a>
+  </div>
+  <div class="navbar-section right">
+    <ul class="navbar-links right-links">
+      <!-- Show Home and Log in links if not logged in -->
+      <li *ngIf="!userLogin">
+        <a routerLink="/home" routerLinkActive="active" (click)="setSelectedLink('Home')">Home</a>
+      </li>
+      <li *ngIf="!userLogin">
+        <a routerLink="/login" routerLinkActive="active" (click)="setSelectedLink('Log in')">Log in</a>
+      </li>
+      <!-- Show user login and Logout links if logged in -->
+      <li *ngIf="userLogin">
+        <a>{{ userLogin }}</a>
+      </li>
+      <li *ngIf="userLogin">
+        <a (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Sub-menu below the main menu -->
+<div class="sub-menu" *ngIf="selectedLink">
+  <span>{{ selectedLink }}</span>
+</div>

@@ -1,31 +1,18 @@
+export enum Roles {
+  VISITEUR = 'Visiteur',
+  ADMIN = 'Admin',
+  TESTEUR = 'Testeur',
+  DEFAULT = 'Default',
+}
+
 export interface User {
-    iduser?: number;
-    nom?: string;
-    prenom?: string;
-    email: string;
-    numtel?: string;
-    login: string;
-    mdp: string; 
-    role?: Roles;
-    operations?: Operation[];
-    traces?: Trace[]; 
-    numseries?: NumSerie[]; 
-  }
-  
-  export enum Roles {
-    VISITEUR = 'Visiteur',
-    ADMIN = 'Admin',
-    TESTEUR = 'Testeur',
-  }
+  iduser?: number;
+  nom?: string;
+  prenom?: string;
+  email: string;
+  numtel?: string;
+  login: string;
+  mdp: string; 
+  role?: Roles;
 
-
-
-
-export interface Operation {
-  }
-  
-  export interface Trace {
-  }
-  
-  export interface NumSerie {
-  }
+}

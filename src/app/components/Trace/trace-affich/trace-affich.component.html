@@ -27,6 +27,7 @@
           <th>ID</th>
           <th>Serial Number</th>
           <th>Operation</th>
+          <th>Trace</th>
           <th>Date Creation</th>
           <th>Date Start</th>
           <th>Date End</th>
@@ -38,7 +39,8 @@
         <tr *ngFor="let trace of filteredTraces">
           <td>{{ trace.idtrace }}</td>
           <td>{{ trace.numserie }}</td>
-          <td>{{ trace.operation }}</td>
+          <td>{{ trace.operationn }}</td>
+          <td class="multi-line">{{ trace.tracee }}</td>
           <td>
             <ng-container *ngIf="trace.datecreation">
               <div>{{ trace.datecreation | date:'yyyy-MM-dd' }}</div>

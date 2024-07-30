@@ -11,7 +11,6 @@ import { Operation } from '../../models/Operation';
 })
 export class OperationCreateComponent implements OnInit {
   operation: Operation = {
-    numeroserie: '',
     description: '',
     code: '',
     creerpar: ''

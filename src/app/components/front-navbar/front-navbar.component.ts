@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth-service.service';
   styleUrls: ['./front-navbar.component.css']
 })
 export class FrontNavbarComponent implements OnInit {
-  userRole: string | null = null;
+  userRole: string | null = 'Default'; // Default role
   userLogin: string | null = null;
   selectedLink: string = '';
 
@@ -27,7 +27,7 @@ export class FrontNavbarComponent implements OnInit {
 
     // Subscribe to user role and login
     this.authService.userRole$.subscribe(role => {
-      this.userRole = role;
+      this.userRole = role || 'Default'; // Default role if null
     });
     this.authService.userLogin$.subscribe(login => {
       this.userLogin = login;
