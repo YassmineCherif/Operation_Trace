@@ -1,5 +1,5 @@
 package com.sagemcom.Controllers;
-
+import com.sagemcom.Entities.Roles;
 import com.sagemcom.Entities.User;
 import com.sagemcom.Services.UserService;
 import jakarta.persistence.EntityNotFoundException;
@@ -45,4 +45,22 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
     }
+
+
+
+    @PostMapping("/register")
+    public ResponseEntity<Map<String, String>> register(@RequestBody User user) {
+        Map<String, String> response = new HashMap<>();
+
+        try {
+            userService.saveUser(user); // Save user in the database
+            response.put("message", "Registration successful");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("message", "Registration failed");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
+    }
+
+
 }
