@@ -5,7 +5,7 @@
       class="right-button" 
       *ngIf="canCreateTrace()"
       [routerLink]="['/trace/create']">
-      Create Trace
+      Create or update Trace
     </button>
   </div>
   
@@ -61,11 +61,7 @@
           </td>
           <td>{{ trace.creerpar }}</td>
           <td>
-            <button 
-              *ngIf="canEditTrace()" 
-              [routerLink]="['/trace/edit', trace.idtrace]">
-              Edit
-            </button>
+            
             <button 
               *ngIf="canDeleteTrace()"
               (click)="deleteTrace(trace.idtrace)">

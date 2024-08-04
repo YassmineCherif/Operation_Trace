@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NumSerie } from '../../models/numSerie';
-import { NumSerieService } from '../../services/numserie.service';
+import { NumSerie } from '../../../models/numSerie';
+import { NumSerieService } from '../../../services/numserie.service';
 
 @Component({
   selector: 'app-numserie-affich',

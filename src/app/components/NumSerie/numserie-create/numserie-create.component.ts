@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NumSerieService } from '../../services/numserie.service';
-import { AuthService } from '../../services/auth-service.service'; // Import AuthService
-import { NumSerie } from '../../models/numSerie';
+import { NumSerieService } from '../../../services/numserie.service';
+import { AuthService } from '../../../services/auth-service.service'; // Import AuthService
+import { NumSerie } from '../../../models/numSerie';
 
 @Component({
   selector: 'app-numserie-create',

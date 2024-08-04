@@ -52,6 +52,10 @@ export class FrontNavbarComponent implements OnInit {
       this.selectedLink = 'Create Serial Number';
     } else if (url.includes('/numserie/edit')) {
       this.selectedLink = 'Edit Serial Number';
+    } else if (url.includes('/trace/create')) {
+      this.selectedLink = 'Create Trace';
+    } else if (url.includes('/register')) {
+      this.selectedLink = 'Register';
     } else {
       this.selectedLink = '';
     }

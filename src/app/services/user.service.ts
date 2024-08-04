@@ -9,6 +9,8 @@ import { catchError } from 'rxjs/operators';
 export class UserService {
 
   private loginUrl = 'http://localhost:9090/users/login'; 
+  private registerUrl = 'http://localhost:9090/users/register'; 
+
 
   constructor(private http: HttpClient) {}
 
@@ -27,4 +29,14 @@ export class UserService {
       })
     );
   }
+
+  register(user: any): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(this.registerUrl, user).pipe(
+      catchError((error) => {
+        console.error('Registration error:', error);
+        return of({ message: 'Registration failed' }); // Handle error as needed
+      })
+    );
+  }
+
 }

@@ -14,7 +14,7 @@ import { parse } from 'date-fns';
 export class TraceCreateComponent implements OnInit {
   traces: Trace[] = [];
   currentUserLogin: string = '';
-  message: string = '';
+  message: string = ' ';
   messageType: 'success' | 'error' = 'success';
 
   constructor(

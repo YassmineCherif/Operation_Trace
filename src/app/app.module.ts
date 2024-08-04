@@ -9,15 +9,16 @@ import { AppComponent } from './app.component';
 import { OperationListComponent } from './components/operation-affich/operation-affich.component';
 import { OperationCreateComponent } from './components/operation-create/operation-create.component';
 import { OperationEditComponent } from './components/operation-edit/operation-edit.component';
-import { NumSerieAffichComponent } from './components/numserie-affich/numserie-affich.component';
-import { NumserieEditComponent } from './components/numserie-edit/numserie-edit.component';
-import { NumSerieCreateComponent } from './components/numserie-create/numserie-create.component';
+import { NumSerieAffichComponent } from './components/NumSerie/numserie-affich/numserie-affich.component';
+import { NumserieEditComponent } from './components/NumSerie/numserie-edit/numserie-edit.component';
+import { NumSerieCreateComponent } from './components/NumSerie/numserie-create/numserie-create.component';
 import { FrontNavbarComponent } from './components/front-navbar/front-navbar.component';
 import { FrontFooterComponent } from "./components/front-footer/front-footer.component";
 import { HomeComponent } from './components/home/home.component';
 import { TraceAffichComponent } from './components/Trace/trace-affich/trace-affich.component';
 import { LoginComponent } from './components/User/login/login.component';
 import { TraceCreateComponent } from './components/Trace/trace-create/trace-create.component';
+import { RegisterComponent } from './components/User/register/register.component';
 
 // Define your routes here
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'trace/create', component: TraceCreateComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
+  {path: 'register', component: RegisterComponent },
   { path: '**', redirectTo: 'home' }
 ];
 
@@ -49,7 +51,8 @@ const routes: Routes = [
     HomeComponent,
     TraceAffichComponent,
     LoginComponent,
-    TraceCreateComponent, // Added the missing TraceCreateComponent
+    TraceCreateComponent,
+    RegisterComponent // Added the missing TraceCreateComponent
   ],
   imports: [
     BrowserModule,

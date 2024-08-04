@@ -62,7 +62,7 @@ button {
 
 /* Style button on hover */
 button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0086FB; /* Darker blue on hover */
 }
 
 /* Error message styling */
@@ -94,4 +94,13 @@ input.ng-valid.ng-dirty,
 select.ng-valid.ng-dirty,
 textarea.ng-valid.ng-dirty {
   border-color: green; /* Green border for valid fields */
+}
+
+/* Specific styling for the numeroserie input */
+.numeroserie-input {
+  width: 90%; /* Full width of the parent container */
+  height: 40px; /* Adjust height as needed */
+  padding: 5px; /* Padding inside the input */
+  box-sizing: border-box; /* Include padding in width/height calculations */
+  font-size: 16px; /* Increase font size for readability */
 }

@@ -28,9 +28,9 @@
         <button type="submit">Login</button>
         <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
         <div class="additional-links">
-            <a href="/register" class="register-link">
+            <a [routerLink]="['/register']" class="register-link">
                 Don’t have an account? <strong>Register</strong>
-            </a>
+              </a>
         </div>
     </form>
 </div>
