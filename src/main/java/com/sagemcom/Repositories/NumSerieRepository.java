@@ -11,4 +11,6 @@ public interface NumSerieRepository extends JpaRepository<NumSerie, Long> {
     boolean existsByNumeroserie(String numeroserie);
 
     NumSerie findByNumeroserie(String numeroserie);
+
+
 }

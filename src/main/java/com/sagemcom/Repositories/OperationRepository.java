@@ -8,9 +8,8 @@ import java.util.List;
 
 @Repository
 public interface OperationRepository extends JpaRepository<Operation, Long> {
-    // Method to find operations by their associated numserie
 
-
+    boolean existsByCode(String code);
 
     List<Operation> findByCode (String code);
 

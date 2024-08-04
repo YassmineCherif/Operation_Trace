@@ -35,8 +35,19 @@ public class OperationController {
 
     @PostMapping
     public Operation createOperation(@RequestBody Operation operation) {
-        return operationService.createOperation(operation);
+        // Check if an operation with the same code already exists
+        boolean codeExists = operationService.existsByCode(operation.getCode());
+
+        if (codeExists) {
+            // If the code exists, you can handle the situation by returning null
+            // or you could throw an exception if you prefer
+            throw new IllegalArgumentException("Operation with this code already exists.");
+        } else {
+            // Create the new Operation if the code does not exist
+            return operationService.createOperation(operation);
+        }
     }
+
 
     @PutMapping("/{id}")
     public Operation updateOperation(@PathVariable long id, @RequestBody Operation updatedOperation) {

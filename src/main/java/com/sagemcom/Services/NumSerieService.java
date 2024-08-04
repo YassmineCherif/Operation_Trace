@@ -65,4 +65,10 @@ public class NumSerieService {
             throw new RuntimeException("NumSerie not found with id " + id);
         }
     }
+
+    public boolean existsByNumeroserie(String numeroserie) {
+        return numSerieRepository.existsByNumeroserie(numeroserie);
+    }
+
+
 }

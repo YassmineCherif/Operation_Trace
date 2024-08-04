@@ -83,4 +83,9 @@ public class OperationService {
             throw new RuntimeException("Operation not found with id " + id);
         }
     }
+
+
+    public boolean existsByCode(String code) {
+        return operationRepository.existsByCode(code);
+    }
 }
