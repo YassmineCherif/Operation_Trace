@@ -9,6 +9,8 @@ import { Trace } from '../models/trace';
 })
 export class TraceService {
   private apiUrl = 'http://localhost:9090/traces';
+  private clientUrl = 'http://localhost:9090/traces/import';
+
 
   constructor(private http: HttpClient) {}
 
@@ -16,14 +18,17 @@ export class TraceService {
     return this.http.get<Trace[]>(this.apiUrl);
   }
 
+
+  createTraces(traces: Trace[]): Observable<void> {
+    return this.http.post<void>(this.clientUrl, traces, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
   /** 
 
   getTraceById(id: number): Observable<Trace> {
     return this.http.get<Trace>(`${this.apiUrl}/${id}`);
-  }
-
-  createTrace(trace: Trace): Observable<Trace> {
-    return this.http.post<Trace>(this.apiUrl, trace);
   }
 
   updateTrace(id: number, trace: Trace): Observable<Trace> {

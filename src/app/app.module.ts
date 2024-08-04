@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; // Import CommonModule
+
 import { AppComponent } from './app.component';
 import { OperationListComponent } from './components/operation-affich/operation-affich.component';
 import { OperationCreateComponent } from './components/operation-create/operation-create.component';
@@ -15,6 +17,7 @@ import { FrontFooterComponent } from "./components/front-footer/front-footer.com
 import { HomeComponent } from './components/home/home.component';
 import { TraceAffichComponent } from './components/Trace/trace-affich/trace-affich.component';
 import { LoginComponent } from './components/User/login/login.component';
+import { TraceCreateComponent } from './components/Trace/trace-create/trace-create.component';
 
 // Define your routes here
 const routes: Routes = [
@@ -25,9 +28,10 @@ const routes: Routes = [
   { path: 'numserie/all', component: NumSerieAffichComponent },
   { path: 'numserie/edit/:id', component: NumserieEditComponent },
   { path: 'numserie/create', component: NumSerieCreateComponent },
-  {path : 'home', component: HomeComponent},
-  {path : 'trace/all' , component:TraceAffichComponent},
-  { path: 'login', component: LoginComponent},
+  { path: 'trace/all', component: TraceAffichComponent },
+  { path: 'trace/create', component: TraceCreateComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
   { path: '**', redirectTo: 'home' }
 ];
 
@@ -45,11 +49,13 @@ const routes: Routes = [
     HomeComponent,
     TraceAffichComponent,
     LoginComponent,
+    TraceCreateComponent, // Added the missing TraceCreateComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    CommonModule, // Add CommonModule here
     RouterModule.forRoot(routes)
   ],
   providers: [],

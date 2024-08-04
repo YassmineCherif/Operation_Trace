@@ -8,6 +8,7 @@ import { NumserieEditComponent } from './components/numserie-edit/numserie-edit.
 import { HomeComponent } from './components/home/home.component';
 import { TraceAffichComponent } from './components/Trace/trace-affich/trace-affich.component';
 import { LoginComponent } from './components/User/login/login.component';
+import { TraceCreateComponent } from './components/Trace/trace-create/trace-create.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,7 +19,8 @@ export const routes: Routes = [
   { path: 'numserie/edit/:id', component: NumserieEditComponent },
   { path: 'numserie/create', component: NumSerieCreateComponent },
   {path : 'trace/all' , component:TraceAffichComponent},
-  {path : 'home', component: HomeComponent},
+  {path : 'trace/create', component: TraceCreateComponent},
   { path: 'login', component: LoginComponent},
+  {path : 'home', component: HomeComponent},
   { path: '**', redirectTo: 'home' }
 ];

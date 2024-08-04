@@ -8,8 +8,8 @@ import { Operation } from '../models/Operation';
 })
 export class OperationService {
   private apiUrl = 'http://localhost:9090/operations';
-  private numSerieUrl = 'http://localhost:9090/numseries/ids'; // Corrected URL
-  private usersUrl = 'http://localhost:9090/operations/user'; // URL for users
+  private numSerieUrl = 'http://localhost:9090/numseries/ids';
+  private usersUrl = 'http://localhost:9090/operations/user';
 
   constructor(private http: HttpClient) { }
 

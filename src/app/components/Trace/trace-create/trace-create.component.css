@@ -1,0 +1,52 @@
+/* Container for the file input and button */
+.trace-create-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4cm;
+  }
+  
+  /* Style for the file input */
+  .trace-create-container input[type="file"] {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #0086FB; /* Default color */
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  /* Style for the button */
+  .trace-create-container button {
+    background-color: #0086FB; /* Default color */
+    color: #ffffff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 6cm;
+  }
+  
+  /* Button hover effect */
+  .trace-create-container button:hover {
+    background-color: #00D3D6; /* Hover color */
+  }
+  
+  /* Message styles */
+  .message {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333333;
+  }
+  
+  /* Success message */
+  .message.success {
+    color: #28a745;
+  }
+  
+  /* Error message */
+  .message.error {
+    color: #dc3545;
+  }
+  

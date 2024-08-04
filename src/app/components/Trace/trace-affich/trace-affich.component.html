@@ -47,8 +47,18 @@
               <div>{{ trace.datecreation | date:'HH:mm:ss' }}</div>
             </ng-container>
           </td>
-          <td>{{ trace.datedebut | date }}</td>
-          <td>{{ trace.datefin | date }}</td>
+          <td>
+            <ng-container *ngIf="trace.datedebut">
+              <div>{{ trace.datedebut | date:'yyyy-MM-dd' }}</div>
+              <div>{{ trace.datedebut | date:'HH:mm:ss' }}</div>
+            </ng-container>
+          </td>
+          <td>
+            <ng-container *ngIf="trace.datefin">
+              <div>{{ trace.datefin | date:'yyyy-MM-dd' }}</div>
+              <div>{{ trace.datefin | date:'HH:mm:ss' }}</div>
+            </ng-container>
+          </td>
           <td>{{ trace.creerpar }}</td>
           <td>
             <button 

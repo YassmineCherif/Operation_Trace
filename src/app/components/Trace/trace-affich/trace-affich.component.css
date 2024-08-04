@@ -1,6 +1,6 @@
 /* Conteneur pour la liste entière */
 div {
-  max-width: 1400px; /* Augmenter la largeur maximale du conteneur */
+  max-width: 1600px; /* Augmenter la largeur maximale du conteneur */
   margin: auto; /* Centrer le conteneur horizontalement */
   padding: 20px; /* Ajouter un padding autour du conteneur */
   border-radius: 8px; /* Coins arrondis */

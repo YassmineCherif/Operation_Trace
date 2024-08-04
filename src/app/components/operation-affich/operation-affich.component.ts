@@ -41,6 +41,7 @@ export class OperationListComponent implements OnInit {
     const searchTermLower = this.searchTerm.toLowerCase();
     this.filteredOperations = this.operations.filter(operation =>
       operation.description.toLowerCase().includes(searchTermLower) ||
+      operation.code.toLowerCase().includes(searchTermLower) ||
       operation.creerpar.toLowerCase().includes(searchTermLower)
     );
   }

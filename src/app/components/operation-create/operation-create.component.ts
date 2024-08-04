@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OperationService } from '../../services/operation.service';
-import { AuthService } from '../../services/auth-service.service'; // Import AuthService
+import { AuthService } from '../../services/auth-service.service';
 import { Operation } from '../../models/Operation';
 
 @Component({
@@ -22,11 +22,10 @@ export class OperationCreateComponent implements OnInit {
   constructor(
     private operationService: OperationService,
     private router: Router,
-    private authService: AuthService // Inject AuthService
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    // Fetch serial numbers and users
     this.operationService.getNumSeries().subscribe(data => {
       this.numSeries = data;
     });
@@ -35,9 +34,8 @@ export class OperationCreateComponent implements OnInit {
       this.users = data;
     });
 
-    // Set 'creerpar' to the logged-in user's login
     this.authService.userLogin$.subscribe(login => {
-      this.operation.creerpar = login || ''; // Default to an empty string if login is null
+      this.operation.creerpar = login || '';
     });
   }
 
@@ -47,7 +45,8 @@ export class OperationCreateComponent implements OnInit {
         this.router.navigate(['/operation/all']);
       },
       error: (err) => {
-        this.errorMessage = err.error.message || 'An error occurred while creating the operation. Please try again later.';
+        // Ensure error message extraction
+        this.errorMessage = err.error?.message || 'Operation with this code already exists.';
       }
     });
   }
