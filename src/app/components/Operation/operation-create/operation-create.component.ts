@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OperationService } from '../../services/operation.service';
-import { AuthService } from '../../services/auth-service.service';
-import { Operation } from '../../models/Operation';
+import { OperationService } from '../../../services/operation.service';
+import { AuthService } from '../../../services/auth-service.service';
+import { Operation } from '../../../models/Operation';
 
 @Component({
   selector: 'app-operation-create',

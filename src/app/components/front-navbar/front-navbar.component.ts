@@ -56,6 +56,8 @@ export class FrontNavbarComponent implements OnInit {
       this.selectedLink = 'Create Trace';
     } else if (url.includes('/register')) {
       this.selectedLink = 'Register';
+    } else if (url.includes('/profile')) {
+      this.selectedLink = 'Profile';
     } else {
       this.selectedLink = '';
     }
@@ -68,5 +70,9 @@ export class FrontNavbarComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigate(['/home']);
+  }
+
+  navigateToProfile(): void {
+    this.router.navigate(['/profile']);
   }
 }

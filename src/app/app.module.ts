@@ -6,9 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 
 import { AppComponent } from './app.component';
-import { OperationListComponent } from './components/operation-affich/operation-affich.component';
-import { OperationCreateComponent } from './components/operation-create/operation-create.component';
-import { OperationEditComponent } from './components/operation-edit/operation-edit.component';
+import { OperationListComponent } from './components/Operation/operation-affich/operation-affich.component';
+import { OperationCreateComponent } from './components/Operation/operation-create/operation-create.component';
+import { OperationEditComponent } from './components/Operation/operation-edit/operation-edit.component';
 import { NumSerieAffichComponent } from './components/NumSerie/numserie-affich/numserie-affich.component';
 import { NumserieEditComponent } from './components/NumSerie/numserie-edit/numserie-edit.component';
 import { NumSerieCreateComponent } from './components/NumSerie/numserie-create/numserie-create.component';
@@ -20,6 +20,7 @@ import { LoginComponent } from './components/User/login/login.component';
 import { TraceCreateComponent } from './components/Trace/trace-create/trace-create.component';
 import { RegisterComponent } from './components/User/register/register.component';
 import { ForgotPasswordComponent } from './components/User/forgot-password/forgot-password.component';
+import { UpdateProfileComponent } from './components/User/update-profile/update-profile.component';
 
 // Define your routes here
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {path: 'register', component: RegisterComponent },
   {path : 'forgot', component: ForgotPasswordComponent},
+  {path : 'profile', component: UpdateProfileComponent},
   { path: '**', redirectTo: 'home' }
 ];
 
@@ -55,7 +57,8 @@ const routes: Routes = [
     LoginComponent,
     TraceCreateComponent,
     RegisterComponent ,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    UpdateProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -34,6 +34,10 @@
         <a>{{ userLogin }}</a>
       </li>
       <li *ngIf="userLogin">
+        <a (click)="navigateToProfile()">Profile</a>
+      </li>
+      
+      <li *ngIf="userLogin">
         <a (click)="logout()">Logout</a>
       </li>
     </ul>

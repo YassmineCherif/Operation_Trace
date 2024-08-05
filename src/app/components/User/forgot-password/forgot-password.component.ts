@@ -37,4 +37,9 @@ export class ForgotPasswordComponent {
       }
     );
   }
+
+  // Method to clear the error message when user starts typing
+  onEmailInput(): void {
+    this.errorMessage = null;
+  }
 }

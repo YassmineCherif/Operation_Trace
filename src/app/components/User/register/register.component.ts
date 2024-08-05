@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth-service.service';
+import { Roles } from '../../../models/User';
+import { User } from '../../../models/User';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +14,7 @@ export class RegisterComponent {
   nom: string = '';
   prenom: string = '';
   email: string = '';
-  login = '' ;
+  login = '';
   numtel: string = '';
   password: string = '';
   confirmPassword: string = '';
@@ -36,14 +38,14 @@ export class RegisterComponent {
       return; // Stop submission if validation fails
     }
 
-    const newUser = {
+    const newUser: User = {
       nom: this.nom,
       prenom: this.prenom,
       email: this.email,
       numtel: this.numtel,
-      login: this.login, // Assuming login is the email
+      login: this.login,
       mdp: this.password,
-      role: 'Default' // Default role
+      role: Roles.DEFAULT
     };
 
     this.userService.register(newUser).subscribe({

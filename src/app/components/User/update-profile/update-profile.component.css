@@ -1,18 +1,16 @@
-/* forgot-password.component.css */
-.forgot-password-container {
+.update-profile-container {
     max-width: 480px;
-    margin: 1.5cm auto 1.1cm;
+    margin: 0 auto; /* Center container horizontally */
     padding: 35px;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slightly darkened shadow */
-    margin-bottom: 5.5cm;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow */
 }
 
 h2 {
     text-align: center;
-    color: #333; /* Dark neutral text color */
+    color: #333; /* Dark, neutral text color */
     margin-bottom: 40px;
 }
 
@@ -21,8 +19,8 @@ form {
     flex-direction: column;
 }
 
-.form-group {
-    margin-bottom: 40px;
+div {
+    margin-bottom: 20px;
 }
 
 label {
@@ -43,8 +41,12 @@ input {
 }
 
 input:focus {
-    border-color: #00D3D6; /* Secondary color for focus */
+    border-color: #00D3D6; /* Secondary color on focus */
     outline: none;
+}
+
+input::placeholder {
+    color: #888; /* Placeholder text color */
 }
 
 button {
@@ -59,7 +61,7 @@ button {
 }
 
 button:hover {
-    background-color: #00D3D6; /* Secondary color for hover */
+    background-color: #00D3D6; /* Secondary color on hover */
 }
 
 .error-message {
@@ -69,11 +71,10 @@ button:hover {
     padding: 0.75rem;
     border-radius: 0.25rem;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 5px;
     font-size: 14px;
 }
 
-/* Additional styles for links */
 .additional-links {
     margin-top: 20px;
     text-align: center;
@@ -85,7 +86,6 @@ button:hover {
 .register-link {
     display: block;
     margin-top: 10px;
-    font-weight: bold;
     color: #333; /* Primary color */
     text-decoration: none;
     transition: color 0.3s ease;
@@ -94,4 +94,16 @@ button:hover {
 .forgot-password-link:hover,
 .register-link:hover {
     color: #00D3D6; /* Secondary color on hover */
+}
+
+
+.success-message {
+    color: #006600; /* Dark green text */
+    background-color: #ccffcc; /* Light green background */
+    border: 1px solid #006600; /* Dark green border */
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 14px;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OperationService } from '../../services/operation.service';
-import { Operation } from '../../models/Operation';
+import { OperationService } from '../../../services/operation.service';
+import { Operation } from '../../../models/Operation';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { RouterModule } from '@angular/router'; // Import RouterModule
 import { HttpClientModule } from '@angular/common/http';
