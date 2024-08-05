@@ -1,4 +1,5 @@
 package com.sagemcom.Controllers;
+import com.sagemcom.Entities.EmailRequest;
 import com.sagemcom.Entities.Roles;
 import com.sagemcom.Entities.User;
 import com.sagemcom.Services.UserService;
@@ -61,6 +62,33 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
     }
+
+
+
+    @PostMapping("/send-email")
+    public void sendEmail(@RequestBody EmailRequest emailRequest) {
+        userService.sendSimpleEmail(emailRequest.getToEmail(), emailRequest.getSubject(), emailRequest.getBody());
+    }
+
+    @PostMapping("/forgot-password/{email}")
+    public ResponseEntity<String> forgotPassword(@PathVariable String email) {
+        try {
+            userService.resetPassword(email);
+            return ResponseEntity.ok("Password reset email sent successfully");
+        } catch (IllegalArgumentException e) {
+            // Log the exception for debugging purposes
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (Exception e) {
+            // Log the exception for debugging purposes
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred");
+        }
+    }
+
+
+
+
 
 
 }
