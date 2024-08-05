@@ -10,6 +10,8 @@ export class UserService {
 
   private loginUrl = 'http://localhost:9090/users/login'; 
   private registerUrl = 'http://localhost:9090/users/register'; 
+  private apiUrl = 'http://localhost:9090/users'; 
+
 
 
   constructor(private http: HttpClient) {}
@@ -38,5 +40,12 @@ export class UserService {
       })
     );
   }
+
+
+
+  forgotPassword(email: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/forgot-password/${email}`, {});
+  }
+  
 
 }

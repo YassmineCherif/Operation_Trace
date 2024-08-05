@@ -2,7 +2,7 @@
     <h2>Log in or create an account</h2>
     <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
         <div>
-            <label for="nom">Nom:</label>
+            <label for="nom">Last name:</label>
             <input
                 type="text"
                 id="nom"
@@ -14,11 +14,11 @@
                 placeholder="Enter your last name"
             />
             <p *ngIf="registerForm.submitted && !nomField.valid" class="error-message">
-                Nom is required and must be alphabetic.
+                Last name is required and must be alphabetic.
             </p>
         </div>
         <div>
-            <label for="prenom">Prénom:</label>
+            <label for="prenom">First name:</label>
             <input
                 type="text"
                 id="prenom"
@@ -30,7 +30,7 @@
                 placeholder="Enter your first name"
             />
             <p *ngIf="registerForm.submitted && !prenomField.valid" class="error-message">
-                Prénom is required and must be alphabetic.
+                First name is required and must be alphabetic.
             </p>
         </div>
         <div>
@@ -44,6 +44,9 @@
                 required
                 placeholder="Enter your login"
             />
+            <p *ngIf="registerForm.submitted && !prenomField.valid" class="error-message">
+                Login is required .
+            </p>
         </div>
         <div>
             <label for="email">Email:</label>
@@ -61,7 +64,7 @@
             </p>
         </div>
         <div>
-            <label for="numtel">Numéro de téléphone:</label>
+            <label for="numtel">Phone number:</label>
             <input
                 type="text"
                 id="numtel"
@@ -73,7 +76,7 @@
                 placeholder="Enter your phone number"
             />
             <p *ngIf="registerForm.submitted && !numtelField.valid" class="error-message">
-                Numéro de téléphone is required and must be 8 digits.
+                Phone number is required and must be 8 digits.
             </p>
         </div>
         <div>

@@ -20,7 +20,7 @@
                 [(ngModel)]="password"
                 required
             />
-            <a href="/forgot-password" class="forgot-password-link">
+                <a [routerLink]="['/forgot']" class="forgot-password-link">
               <strong> Forgotten your password?</strong>
             </a>
         </div>

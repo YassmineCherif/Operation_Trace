@@ -19,6 +19,7 @@ import { TraceAffichComponent } from './components/Trace/trace-affich/trace-affi
 import { LoginComponent } from './components/User/login/login.component';
 import { TraceCreateComponent } from './components/Trace/trace-create/trace-create.component';
 import { RegisterComponent } from './components/User/register/register.component';
+import { ForgotPasswordComponent } from './components/User/forgot-password/forgot-password.component';
 
 // Define your routes here
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   {path: 'register', component: RegisterComponent },
+  {path : 'forgot', component: ForgotPasswordComponent},
   { path: '**', redirectTo: 'home' }
 ];
 
@@ -52,7 +54,8 @@ const routes: Routes = [
     TraceAffichComponent,
     LoginComponent,
     TraceCreateComponent,
-    RegisterComponent // Added the missing TraceCreateComponent
+    RegisterComponent ,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
