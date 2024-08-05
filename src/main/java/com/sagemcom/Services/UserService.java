@@ -109,6 +109,21 @@ public class UserService {
 
 
 
+    public void updateUserProfile(String login, User user) throws Exception {
+        User existingUser = userRepository.findByLogin(login);
+        if (existingUser == null) {
+            throw new Exception("User not found");
+        }
+        if (user.getMdp() != null && !user.getMdp().isEmpty()) {
+            existingUser.setMdp(user.getMdp());
+        }
+        existingUser.setEmail(user.getEmail());
+        existingUser.setNumtel(user.getNumtel());
+        // Update other fields if necessary
+
+        userRepository.save(existingUser);
+    }
+
 }
 
 

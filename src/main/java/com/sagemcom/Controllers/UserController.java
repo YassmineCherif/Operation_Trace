@@ -2,6 +2,7 @@ package com.sagemcom.Controllers;
 import com.sagemcom.Entities.EmailRequest;
 import com.sagemcom.Entities.Roles;
 import com.sagemcom.Entities.User;
+import com.sagemcom.Repositories.UserRepository;
 import com.sagemcom.Services.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+     @Autowired
+     private UserRepository userRepository;
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestParam String loginEmail, @RequestParam String password) {
@@ -86,6 +90,31 @@ public class UserController {
         }
     }
 
+
+
+    @GetMapping("/profile/{login}")
+    public ResponseEntity<User> getUserProfile(@PathVariable String login) {
+        // Your logic to get the user profile
+        User user = userRepository.findByLogin(login);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @PutMapping("/profile/{login}")
+    public ResponseEntity<Map<String, String>> updateUserProfile(@PathVariable String login, @RequestBody User user) {
+        Map<String, String> response = new HashMap<>();
+        try {
+            userService.updateUserProfile(login, user);
+            response.put("message", "Profile updated successfully");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("message", "Profile update failed");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
+    }
 
 
 
