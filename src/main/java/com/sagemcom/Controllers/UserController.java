@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.server.ResponseStatusException;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -117,7 +119,21 @@ public class UserController {
     }
 
 
+    @GetMapping("/all")
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable Long id, @RequestBody User userDetails) {
+        try {
+            User user = userRepository.findById(id).orElseThrow();
+            user.setRole(userDetails.getRole());
+            return userRepository.save(user);
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found", e);
+        }
+    }
 
 
 }
