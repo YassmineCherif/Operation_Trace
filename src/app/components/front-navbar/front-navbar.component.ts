@@ -58,6 +58,8 @@ export class FrontNavbarComponent implements OnInit {
       this.selectedLink = 'Register';
     } else if (url.includes('/profile')) {
       this.selectedLink = 'Profile';
+    } else if (url.includes('/roles')) {
+      this.selectedLink = 'Roles';
     } else {
       this.selectedLink = '';
     }

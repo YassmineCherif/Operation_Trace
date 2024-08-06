@@ -12,6 +12,7 @@ import { TraceCreateComponent } from './components/Trace/trace-create/trace-crea
 import { RegisterComponent } from './components/User/register/register.component';
 import { ForgotPasswordComponent } from './components/User/forgot-password/forgot-password.component';
 import { UpdateProfileComponent } from './components/User/update-profile/update-profile.component';
+import { RolesComponent } from './components/User/roles/roles.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,5 +29,6 @@ export const routes: Routes = [
   {path: 'register', component: RegisterComponent },
   {path : 'forgot', component: ForgotPasswordComponent},
   {path : 'profile', component: UpdateProfileComponent},
+  {path : 'roles', component: RolesComponent},
   { path: '**', redirectTo: 'home' }
 ];

@@ -36,6 +36,9 @@
       <li *ngIf="userLogin">
         <a (click)="navigateToProfile()">Profile</a>
       </li>
+      <li *ngIf="userRole === 'Admin'">
+        <a routerLink="/roles" routerLinkActive="active" (click)="setSelectedLink('Roles')">Roles</a>
+      </li>
       
       <li *ngIf="userLogin">
         <a (click)="logout()">Logout</a>

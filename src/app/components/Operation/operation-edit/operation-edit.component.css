@@ -2,10 +2,17 @@
 div {
   max-width: 600px; /* Limit the width of the form */
   margin: auto; /* Center the form horizontally */
-  padding: 20px; /* Add padding around the form */
+  padding: 40px; /* Add padding around the form */
   border: 1px solid #ddd; /* Light gray border around the form */
   border-radius: 8px; /* Rounded corners */
   background-color: #f9f9f9; /* Light background color */
+
+}
+
+.big {
+  margin-top: 0.5cm;
+  margin-bottom: 0.5cm;
+
 }
 
 /* Header styling */
@@ -19,6 +26,9 @@ label {
   display: block; /* Make labels block elements */
   margin-bottom: 8px; /* Add space below the label */
   font-weight: bold; /* Bold text for labels */
+  color: #3086FB ;
+
+
 }
 
 /* Style input fields */
@@ -50,7 +60,7 @@ textarea {
 /* Style the submit button */
 button {
   display: block; /* Make the button a block element */
-  width: 100%; /* Make the button take the full width of its container */
+  width: 70%; /* Make the button take the full width of its container */
   padding: 10px; /* Add padding inside the button */
   background-color: #0086FB; /* Blue background color */
   color: white; /* White text color */
@@ -58,6 +68,8 @@ button {
   border-radius: 4px; /* Rounded corners */
   font-size: 16px; /* Increase font size */
   cursor: pointer; /* Change cursor to pointer on hover */
+  margin: 20px auto; 
+
 }
 
 /* Style button on hover */

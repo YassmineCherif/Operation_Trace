@@ -1,4 +1,5 @@
-<div *ngIf="numSerie">
+<div *ngIf="numSerie" class="big">
+
   <h2>Edit Serial Number</h2>
   <form (ngSubmit)="updateNumSerie()" #numSerieForm="ngForm">
     <input type="hidden" [(ngModel)]="numSerie.idnumserie" name="idnumserie" />
@@ -23,4 +24,3 @@
   <div *ngIf="errorMessage" class="error-message">
     <p>{{ errorMessage }}</p>
   </div>
-</div>

@@ -37,6 +37,7 @@ export class TraceAffichComponent implements OnInit {
     this.filteredTraces = this.traces.filter(trace =>
       trace.numserie.toLowerCase().includes(term) ||
       trace.operationn.toLowerCase().includes(term) ||
+      trace.tracee.toLowerCase().includes(term) ||
       trace.creerpar.toLowerCase().includes(term)
     );
   }
