@@ -22,7 +22,7 @@
           <td>{{ numSerie.numeroserie }}</td>
           <td>
             <ng-container *ngIf="numSerie.datecreation">
-              <div>{{ numSerie.datecreation | date:'yyyy-MM-dd' }}</div>
+              <div>{{ numSerie.datecreation | date:'MM-dd-yyyy' }}</div>
               <div>{{ numSerie.datecreation | date:'HH:mm:ss' }}</div>
             </ng-container>
           </td>

@@ -5,7 +5,7 @@
       class="right-button" 
       *ngIf="canCreateTrace()"
       [routerLink]="['/trace/create']">
-      Create or update Trace
+      Create or Update Trace
     </button>
   </div>
   
@@ -13,9 +13,16 @@
   <div class="search-container">
     <input 
       type="text" 
-      placeholder="Search by Serial Number, Operation, Trace , Created by" 
+      placeholder="Search by Serial Number, Operation, Trace, Created by" 
       [(ngModel)]="searchTerm" 
       (input)="filterTraces()" 
+    />
+    <!-- Date Search Input -->
+    <input 
+      type="date" 
+      [(ngModel)]="searchDate" 
+      (ngModelChange)="filterTraces()" 
+      placeholder="Search by Date"
     />
   </div>
   
@@ -43,25 +50,24 @@
           <td class="multi-line">{{ trace.tracee }}</td>
           <td>
             <ng-container *ngIf="trace.datecreation">
-              <div>{{ trace.datecreation | date:'yyyy-MM-dd' }}</div>
+              <div>{{ trace.datecreation | date:'MM-dd-yyyy' }}</div>
               <div>{{ trace.datecreation | date:'HH:mm:ss' }}</div>
             </ng-container>
           </td>
           <td>
             <ng-container *ngIf="trace.datedebut">
-              <div>{{ trace.datedebut | date:'yyyy-MM-dd' }}</div>
+              <div>{{ trace.datedebut | date:'MM-dd-yyyy' }}</div>
               <div>{{ trace.datedebut | date:'HH:mm:ss' }}</div>
             </ng-container>
           </td>
           <td>
             <ng-container *ngIf="trace.datefin">
-              <div>{{ trace.datefin | date:'yyyy-MM-dd' }}</div>
+              <div>{{ trace.datefin | date:'MM-dd-yyyy' }}</div>
               <div>{{ trace.datefin | date:'HH:mm:ss' }}</div>
             </ng-container>
           </td>
           <td>{{ trace.creerpar }}</td>
           <td>
-            
             <button 
               *ngIf="canDeleteTrace()"
               (click)="deleteTrace(trace.idtrace)">

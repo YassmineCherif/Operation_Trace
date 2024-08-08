@@ -10,8 +10,8 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Description</th>
           <th>Code</th>
+          <th>Description</th>
           <th>Date Creation</th>
           <th>Creer Par</th>
           <th>Actions</th>
@@ -20,11 +20,11 @@
       <tbody>
         <tr *ngFor="let operation of filteredOperations">
           <td>{{ operation.idoperation }}</td>
-          <td>{{ operation.description }}</td>
           <td class="multi-line">{{ operation.code }}</td>
+          <td>{{ operation.description }}</td>
           <td>
             <ng-container *ngIf="operation.datecreation">
-              <div>{{ operation.datecreation | date:'yyyy-MM-dd' }}</div>
+              <div>{{ operation.datecreation | date:'MM-dd-yyyy' }}</div>
               <div>{{ operation.datecreation | date:'HH:mm:ss' }}</div>
             </ng-container>
           </td>

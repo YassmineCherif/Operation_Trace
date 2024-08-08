@@ -11,6 +11,7 @@ export class TraceAffichComponent implements OnInit {
   traces: Trace[] = [];
   filteredTraces: Trace[] = [];
   searchTerm: string = '';
+  searchDate: string = ''; // Date to search for traces within the start and end date range
   userRole: string | null = null;
 
   constructor(private traceService: TraceService) {}
@@ -34,12 +35,33 @@ export class TraceAffichComponent implements OnInit {
 
   filterTraces(): void {
     const term = this.searchTerm.toLowerCase();
-    this.filteredTraces = this.traces.filter(trace =>
-      trace.numserie.toLowerCase().includes(term) ||
-      trace.operationn.toLowerCase().includes(term) ||
-      trace.tracee.toLowerCase().includes(term) ||
-      trace.creerpar.toLowerCase().includes(term)
-    );
+    const searchDate = this.searchDate ? this.parseDate(this.searchDate) : null;
+
+    this.filteredTraces = this.traces.filter(trace => {
+      // Convert trace dates to Date objects if they are not already
+      const traceDateStart = trace.datedebut instanceof Date ? trace.datedebut : this.parseDate(trace.datedebut);
+      const traceDateEnd = trace.datefin instanceof Date ? trace.datefin : this.parseDate(trace.datefin);
+
+      const matchesText = trace.numserie.toLowerCase().includes(term) ||
+                          trace.operationn.toLowerCase().includes(term) ||
+                          trace.tracee.toLowerCase().includes(term) ||
+                          trace.creerpar.toLowerCase().includes(term);
+
+      const matchesDate = searchDate ? 
+        (traceDateStart && traceDateEnd ? 
+          (searchDate >= traceDateStart && searchDate <= traceDateEnd) : 
+          false) : 
+        true; // If no date is provided, match all dates
+
+      return matchesText && matchesDate;
+    });
+  }
+
+  parseDate(dateString: string): Date | null {
+    if (!dateString) return null;
+    const date = new Date(dateString);
+    // Ensure the date object is valid
+    return isNaN(date.getTime()) ? null : date;
   }
 
   deleteTrace(id: number): void {
@@ -55,17 +77,14 @@ export class TraceAffichComponent implements OnInit {
     }
   }
 
-  // Function to determine if the 'Create trace' button should be enabled
   canCreateTrace(): boolean {
     return this.userRole === 'Admin' || this.userRole === 'Testeur';
   }
 
-  // Function to determine if the 'Edit' button should be enabled
   canEditTrace(): boolean {
     return this.userRole === 'Admin' || this.userRole === 'Testeur';
   }
 
-  // Function to determine if the 'Delete' button should be enabled
   canDeleteTrace(): boolean {
     return this.userRole === 'Admin';
   }
