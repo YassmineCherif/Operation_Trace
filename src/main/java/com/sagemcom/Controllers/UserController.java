@@ -32,11 +32,8 @@ public class UserController {
         Map<String, String> response = new HashMap<>();
 
         try {
-            if (loginEmail.contains("@") && loginEmail.contains(".")) {
-                user = userService.findByEmail(loginEmail);
-            } else {
                 user = userService.findByLogin(loginEmail);
-            }
+
         } catch (EntityNotFoundException e) {
             response.put("message", "Invalid login or password");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);

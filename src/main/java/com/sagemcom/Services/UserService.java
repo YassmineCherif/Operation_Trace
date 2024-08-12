@@ -46,13 +46,6 @@ public class UserService {
         return user;
     }
 
-    public User findByEmail(String email) {
-        User user = userRepository.findByEmail(email);
-        if (user == null) {
-            throw new EntityNotFoundException("User not found with email: " + email);
-        }
-        return user;
-    }
 
     public User saveUser(User user) {
         // No need to encode the password anymore
