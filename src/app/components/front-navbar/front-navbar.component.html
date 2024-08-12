@@ -16,10 +16,12 @@
     </ul>
   </div>
   <div class="navbar-logo">
-    <a routerLink="/home" (click)="setSelectedLink('Home')">
+    <a (click)="navigateHome()">
       <img src="assets/logo.png" alt="Sagemcom Logo" />
     </a>
   </div>
+  
+  
   <div class="navbar-section right">
     <ul class="navbar-links right-links">
       <!-- Show Home and Log in links if not logged in -->

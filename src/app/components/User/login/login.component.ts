@@ -28,9 +28,9 @@ export class LoginComponent {
 
           // Redirect based on role
           if (response.role === 'Admin') {
-            this.router.navigate(['/home']); // Redirect for admin
+            this.router.navigate(['/dashboard']); // Redirect for admin
           } else if (response.role === 'Visiteur' || response.role === 'Testeur') {
-            this.router.navigate(['/trace/all']); // Redirect for visiteur/testeur
+            this.router.navigate(['/home']); // Redirect for visiteur/testeur
           } else {
             this.router.navigate(['/home']); // Default redirect
           }

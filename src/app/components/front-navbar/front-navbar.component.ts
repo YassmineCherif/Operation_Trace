@@ -77,4 +77,13 @@ export class FrontNavbarComponent implements OnInit {
   navigateToProfile(): void {
     this.router.navigate(['/profile']);
   }
+
+  navigateHome(): void {
+    if (this.userRole === 'Admin') {
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.router.navigate(['/home']);
+    }
+  }
+  
 }

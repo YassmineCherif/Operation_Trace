@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'; // Import CommonModule
-
+import { CommonModule } from '@angular/common'; 
 import { AppComponent } from './app.component';
 import { OperationListComponent } from './components/Operation/operation-affich/operation-affich.component';
 import { OperationCreateComponent } from './components/Operation/operation-create/operation-create.component';
@@ -13,7 +12,7 @@ import { NumSerieAffichComponent } from './components/NumSerie/numserie-affich/n
 import { NumserieEditComponent } from './components/NumSerie/numserie-edit/numserie-edit.component';
 import { NumSerieCreateComponent } from './components/NumSerie/numserie-create/numserie-create.component';
 import { FrontNavbarComponent } from './components/front-navbar/front-navbar.component';
-import { FrontFooterComponent } from "./components/front-footer/front-footer.component";
+import { FrontFooterComponent } from './components/front-footer/front-footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { TraceAffichComponent } from './components/Trace/trace-affich/trace-affich.component';
 import { LoginComponent } from './components/User/login/login.component';
@@ -22,6 +21,7 @@ import { RegisterComponent } from './components/User/register/register.component
 import { ForgotPasswordComponent } from './components/User/forgot-password/forgot-password.component';
 import { UpdateProfileComponent } from './components/User/update-profile/update-profile.component';
 import { RolesComponent } from './components/User/roles/roles.component';
+import { DashboardComponent } from './components/User/dashboard/dashboard.component';
 
 // Define your routes here
 const routes: Routes = [
@@ -36,10 +36,11 @@ const routes: Routes = [
   { path: 'trace/create', component: TraceCreateComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
-  {path: 'register', component: RegisterComponent },
-  {path : 'forgot', component: ForgotPasswordComponent},
-  {path : 'profile', component: UpdateProfileComponent},
-  {path : 'roles', component: RolesComponent},
+  { path: 'register', component: RegisterComponent },
+  { path: 'forgot', component: ForgotPasswordComponent },
+  { path: 'profile', component: UpdateProfileComponent },
+  { path: 'roles', component: RolesComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: '**', redirectTo: 'home' }
 ];
 
@@ -58,16 +59,17 @@ const routes: Routes = [
     TraceAffichComponent,
     LoginComponent,
     TraceCreateComponent,
-    RegisterComponent ,
+    RegisterComponent,
     ForgotPasswordComponent,
     UpdateProfileComponent,
-    RolesComponent
+    RolesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    CommonModule, // Add CommonModule here
+    CommonModule, 
     RouterModule.forRoot(routes)
   ],
   providers: [],

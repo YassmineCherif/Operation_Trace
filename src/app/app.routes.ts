@@ -13,6 +13,7 @@ import { RegisterComponent } from './components/User/register/register.component
 import { ForgotPasswordComponent } from './components/User/forgot-password/forgot-password.component';
 import { UpdateProfileComponent } from './components/User/update-profile/update-profile.component';
 import { RolesComponent } from './components/User/roles/roles.component';
+import { DashboardComponent } from './components/User/dashboard/dashboard.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -30,5 +31,6 @@ export const routes: Routes = [
   {path : 'forgot', component: ForgotPasswordComponent},
   {path : 'profile', component: UpdateProfileComponent},
   {path : 'roles', component: RolesComponent},
+  {path : 'dashboard' , component: DashboardComponent},
   { path: '**', redirectTo: 'home' }
 ];

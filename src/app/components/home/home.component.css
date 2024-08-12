@@ -19,8 +19,7 @@ body {
     max-width: 90%; /* Ajuster la taille de l'image selon vos besoins */
     height: auto;
     border-radius: 8px;
-    filter: blur(3px); 
-}
+ }
 
 .overlay-text {
     position: absolute;
@@ -42,7 +41,7 @@ body {
 .overlay-text p {
     font-size: 1.2em;
     line-height: 1.6;
-    color: #ffffff; /* Couleur du texte */
+    color: #333; /* Couleur du texte */
     font-size: 40px;
     font-weight: bold;;
 
