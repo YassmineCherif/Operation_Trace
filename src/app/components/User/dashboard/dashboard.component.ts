@@ -3,6 +3,15 @@ import { Chart, LinearScale, CategoryScale, BarElement, BarController, LineContr
 import { TraceService } from '../../../services/trace.service'; 
 import { Trace } from '../../../models/trace';
 
+interface StatCard {
+  label: string;
+  count: number;
+  percentage: number;
+  isIncrease: boolean;
+  changeText: string;
+}
+
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -12,8 +21,8 @@ export class DashboardComponent implements OnInit {
   traces: Trace[] = [];
   chart: any;
   pieChart: any;
-  dateLabels: string[] = [];
-  seriesData: number[] = [];
+  selectedDate: string = '';
+  statistics: StatCard[] = [];
   operationsData: { labels: string[], data: number[], backgroundColor: string[], borderColor: string[] } = {
     labels: [],
     data: [],
@@ -50,34 +59,13 @@ export class DashboardComponent implements OnInit {
           datefin: new Date(trace.datefin)
         }));
 
-        this.processDates();
-        this.processOperations(); // Process operations data
+        this.processOperations(); 
         this.generateBarChart();
-        this.generatePieChart(); // Generate the pie chart after data is processed
       },
       (error) => {
         console.error('Error fetching trace data:', error);
       }
     );
-  }
-
-  processDates(): void {
-    const dateMap: { [key: string]: number } = {};
-
-    this.traces.forEach(trace => {
-      let currentDate = new Date(trace.datedebut);
-      while (currentDate <= trace.datefin) {
-        const dateString = this.formatDate(currentDate);
-        if (!dateMap[dateString]) {
-          dateMap[dateString] = 0;
-        }
-        dateMap[dateString] += 1;
-        currentDate.setDate(currentDate.getDate() + 1);
-      }
-    });
-
-    this.dateLabels = Object.keys(dateMap);
-    this.seriesData = this.dateLabels.map(date => dateMap[date]);
   }
 
   generateSoftColor(index: number): string {
@@ -87,45 +75,26 @@ export class DashboardComponent implements OnInit {
   }
 
   processOperations(): void {
-    const operationMap: { [key: string]: { [key: string]: number } } = {};
-    const numserieColors: { [key: string]: string } = {};
+    const operationMap: { [key: string]: number } = {};
     
     this.traces.forEach(trace => {
-      if (trace.operationn && trace.numserie) {
-        if (!operationMap[trace.numserie]) {
-          operationMap[trace.numserie] = {};
-          // Generate a unique soft color for this numserie
-          const color = this.generateSoftColor(Object.keys(operationMap).length);
-          numserieColors[trace.numserie] = color;
-        }
-        const operationLabel = trace.operationn;
-        operationMap[trace.numserie][operationLabel] = (operationMap[trace.numserie][operationLabel] || 0) + 1;
+      if (trace.operationn) {
+        operationMap[trace.operationn] = (operationMap[trace.operationn] || 0) + 1;
       }
     });
 
     this.operationsData = {
-      labels: [],
-      data: [],
+      labels: Object.keys(operationMap),
+      data: Object.values(operationMap),
       backgroundColor: [],
       borderColor: []
     };
 
-    Object.keys(operationMap).forEach(numserie => {
-      Object.keys(operationMap[numserie]).forEach(operationLabel => {
-        this.operationsData.labels.push(`${numserie} - ${operationLabel}`);
-        this.operationsData.data.push(operationMap[numserie][operationLabel]);
-        const color = numserieColors[numserie];
-        this.operationsData.backgroundColor.push(color);
-        this.operationsData.borderColor.push(color.replace('80%)', '100%)')); // Slightly darker border color
-      });
+    this.operationsData.labels.forEach((_, index) => {
+      const color = this.generateSoftColor(index);
+      this.operationsData.backgroundColor.push(color);
+      this.operationsData.borderColor.push(color.replace('80%)', '100%)')); // Slightly darker border color
     });
-  }
-  
-  formatDate(date: Date): string {
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
   }
 
   generateBarChart(): void {
@@ -136,13 +105,13 @@ export class DashboardComponent implements OnInit {
       this.chart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: this.dateLabels,
+          labels: this.operationsData.labels,
           datasets: [
             {
-              label: 'Number of Series',
-              data: this.seriesData,
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 1)',
+              label: 'Number of Serial Numbers',
+              data: this.operationsData.data,
+              backgroundColor: this.operationsData.backgroundColor,
+              borderColor: this.operationsData.borderColor,
               borderWidth: 1
             }
           ]
@@ -153,18 +122,17 @@ export class DashboardComponent implements OnInit {
               type: 'category',
               title: {
                 display: true,
-                text: 'Dates'
+                text: 'Operations'
               }
             },
             y: {
               beginAtZero: true,
-              max: 10,
               title: {
                 display: true,
-                text: 'Number of Series'
+                text: 'Number of Serial Numbers'
               },
               ticks: {
-                stepSize: 2
+                stepSize: 1 
               }
             }
           }
@@ -175,71 +143,27 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  generatePieChart(): void {
-    const canvas = document.getElementById('pieChart') as HTMLCanvasElement;
-    const ctx = canvas?.getContext('2d');
 
-    if (ctx) {
-      this.pieChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-          labels: this.operationsData.labels,
-          datasets: [
-            {
-              label: 'Operations',
-              data: this.operationsData.data,
-              backgroundColor: this.operationsData.backgroundColor,
-              borderColor: this.operationsData.borderColor,
-              borderWidth: 1
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'top',
-              labels: {
-                generateLabels: function(chart) {
-                  const dataset = chart.data.datasets[0];
-                  const labels = chart.data.labels as string[];
-                  const backgroundColor = dataset.backgroundColor as string[];
+  
+  filterByDate(): void {
+    if (!this.selectedDate) return;
 
-                  if (!Array.isArray(backgroundColor)) {
-                    return [];
-                  }
+    const selectedDateObj = new Date(this.selectedDate);
+    const countInDateRange = this.traces.filter(trace => selectedDateObj >= trace.datedebut && selectedDateObj <= trace.datefin).length;
 
-                  // Collect unique numserie colors
-                  const numserieColors: { [key: string]: string } = {};
-                  labels.forEach((label, index) => {
-                    const color = backgroundColor[index];
-                    const numserie = label.split(' - ')[0]; // Extract numserie part
-                    if (!numserieColors[numserie]) {
-                      numserieColors[numserie] = color;
-                    }
-                  });
+    const totalCount = this.traces.length;
+    const percentage = totalCount ? (countInDateRange / totalCount) * 100 : 0;
 
-                  return Object.keys(numserieColors).map(numserie => ({
-                    text: `${numserie}`,
-                    fillStyle: numserieColors[numserie],
-                    strokeStyle: numserieColors[numserie],
-                    lineWidth: 1
-                  }));
-                }
-              }
-            },
-            tooltip: {
-              callbacks: {
-                label: function(tooltipItem) {
-                  return `${tooltipItem.label}: ${tooltipItem.raw} occurrences`;
-                }
-              }
-            }
-          }
-        }
-      });
-    } else {
-      console.error('Failed to get canvas context.');
-    }
+    this.statistics = [
+      {
+        label: 'Serial Numbers',
+        count: countInDateRange,
+        percentage: Math.round(percentage * 100) / 100, // Rounded to 2 decimal places
+        isIncrease: percentage > 0, // Assuming it's an increase if percentage > 0
+        changeText: percentage > 0 ? 'Increase' : 'Decrease'
+      }
+    ];
   }
+
+
 }
